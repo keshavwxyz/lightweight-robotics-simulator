@@ -73,7 +73,7 @@ Other start options:
 
 You can run an existing ROS 2 project, for example a Gazebo project, on this simulator. You do not change the nodes of your robot software. You replace only the simulator interface. The [porting guide](docs/porting_guide.md) gives the procedure step by step.
 
-The author used this procedure to run a full warehouse forklift project (Nav2, AMCL, QR perception, pallet handling and a two-robot fleet). The mission results were the same as in Gazebo.
+I used this procedure to run a full warehouse forklift project (Nav2, AMCL, QR perception, pallet handling and a two-robot fleet). The mission results were the same as in Gazebo.
 
 ![Forklift warehouse example](docs/images/forklift_warehouse.png)
 
