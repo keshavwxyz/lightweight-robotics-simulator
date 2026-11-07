@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!-- Simple manipulator: revolute base, prismatic lift, revolute elbow and a
+     two-finger prismatic gripper whose right finger mimics the left one. -->
+<robot name="simple_manipulator">
+  <material name="dark"><color rgba="0.25 0.25 0.28 1"/></material>
+  <material name="green"><color rgba="0.30 0.70 0.45 1"/></material>
+  <material name="white"><color rgba="0.90 0.90 0.90 1"/></material>
+
+  <link name="base_link">
+    <inertial><origin xyz="0 0 0.025"/><mass value="3.0"/>
+      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.015"/></inertial>
+    <visual><origin xyz="0 0 0.025"/><geometry><box size="0.25 0.25 0.05"/></geometry><material name="dark"/></visual>
+    <collision><origin xyz="0 0 0.025"/><geometry><box size="0.25 0.25 0.05"/></geometry></collision>
+  </link>
+
+  <link name="column_link">
+    <inertial><origin xyz="0 0 0.25"/><mass value="1.5"/>
+      <inertia ixx="0.03" ixy="0" ixz="0" iyy="0.03" iyz="0" izz="0.001"/></inertial>
+    <visual><origin xyz="0 0 0.25"/><geometry><cylinder radius="0.03" length="0.5"/></geometry><material name="white"/></visual>
+    <collision><origin xyz="0 0 0.25"/><geometry><cylinder radius="0.03" length="0.5"/></geometry></collision>
+  </link>
+  <joint name="base_yaw" type="revolute">
+    <parent link="base_link"/><child link="column_link"/>
+    <origin xyz="0 0 0.05"/><axis xyz="0 0 1"/>
+    <limit lower="-3.0" upper="3.0" effort="30" velocity="1.5"/>
+  </joint>
+
+  <link name="carriage_link">
+    <inertial><mass value="0.6"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/></inertial>
+    <visual><geometry><box size="0.1 0.1 0.08"/></geometry><material name="green"/></visual>
+    <collision><geometry><box size="0.1 0.1 0.08"/></geometry></collision>
+  </link>
+  <joint name="lift" type="prismatic">
+    <parent link="column_link"/><child link="carriage_link"/>
+    <origin xyz="0 0 0.1"/><axis xyz="0 0 1"/>
+    <limit lower="0.0" upper="0.35" effort="100" velocity="0.3"/>
+    <dynamics damping="1.0"/>
+  </joint>
+
+  <link name="arm_link">
+    <inertial><origin xyz="0.15 0 0"/><mass value="0.5"/>
+      <inertia ixx="0.0002" ixy="0" ixz="0" iyy="0.004" iyz="0" izz="0.004"/></inertial>
+    <visual><origin xyz="0.15 0 0"/><geometry><box size="0.3 0.04 0.04"/></geometry><material name="white"/></visual>
+    <collision><origin xyz="0.17 0 0"/><geometry><box size="0.26 0.04 0.04"/></geometry></collision>
+  </link>
+  <joint name="elbow" type="revolute">
+    <parent link="carriage_link"/><child link="arm_link"/>
+    <origin xyz="0.05 0 0"/><axis xyz="0 0 1"/>
+    <limit lower="-1.8" upper="1.8" effort="10" velocity="2.0"/>
+  </joint>
+
+  <link name="gripper_link">
+    <inertial><mass value="0.1"/>
+      <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/></inertial>
+    <visual><geometry><box size="0.02 0.12 0.03"/></geometry><material name="dark"/></visual>
+  </link>
+  <joint name="gripper_mount" type="fixed">
+    <parent link="arm_link"/><child link="gripper_link"/>
+    <origin xyz="0.31 0 0"/>
+  </joint>
+
+  <link name="left_finger">
+    <inertial><origin xyz="0.03 0 0"/><mass value="0.03"/>
+      <inertia ixx="0.00001" ixy="0" ixz="0" iyy="0.00001" iyz="0" izz="0.00001"/></inertial>
+    <visual><origin xyz="0.03 0 0"/><geometry><box size="0.06 0.01 0.02"/></geometry><material name="green"/></visual>
+    <collision><origin xyz="0.03 0 0"/><geometry><box size="0.06 0.01 0.02"/></geometry></collision>
+  </link>
+  <joint name="left_finger_joint" type="prismatic">
+    <parent link="gripper_link"/><child link="left_finger"/>
+    <origin xyz="0.01 0.015 0"/><axis xyz="0 1 0"/>
+    <limit lower="0.0" upper="0.04" effort="20" velocity="0.1"/>
+  </joint>
+
+  <link name="right_finger">
+    <inertial><origin xyz="0.03 0 0"/><mass value="0.03"/>
+      <inertia ixx="0.00001" ixy="0" ixz="0" iyy="0.00001" iyz="0" izz="0.00001"/></inertial>
+    <visual><origin xyz="0.03 0 0"/><geometry><box size="0.06 0.01 0.02"/></geometry><material name="green"/></visual>
+    <collision><origin xyz="0.03 0 0"/><geometry><box size="0.06 0.01 0.02"/></geometry></collision>
+  </link>
+  <joint name="right_finger_joint" type="prismatic">
+    <parent link="gripper_link"/><child link="right_finger"/>
+    <origin xyz="0.01 -0.015 0"/><axis xyz="0 -1 0"/>
+    <limit lower="0.0" upper="0.04" effort="20" velocity="0.1"/>
+    <mimic joint="left_finger_joint" multiplier="1.0" offset="0.0"/>
+  </joint>
+</robot>

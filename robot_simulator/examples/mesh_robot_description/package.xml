@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>mesh_robot_description</name>
+  <version>0.1.0</version>
+  <description>Example robot using STL and OBJ meshes with package:// references.</description>
+  <maintainer email="dev@example.com">dev</maintainer>
+  <license>MIT</license>
+</package>

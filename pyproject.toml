@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lightweight-robotics-simulator"
+version = "0.1.0"
+description = "Lightweight robotics simulator with PyBullet physics, an OpenGL renderer and a native ROS 2 bridge"
+readme = "README.md"
+license = {text = "Apache-2.0"}
+authors = [{name = "keshavwxyz"}]
+requires-python = ">=3.10"
+keywords = ["robotics", "simulator", "ros2", "pybullet", "urdf"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: POSIX :: Linux",
+    "Topic :: Scientific/Engineering :: Robotics",
+]
+dependencies = [
+    "pybullet>=3.2.6",
+    "numpy>=1.24,<2",
+    "glfw>=2.6",
+    "PyOpenGL>=3.1.7",
+    "imgui[glfw]==2.0.0",
+    "trimesh>=4.0",
+    "pycollada>=0.8",
+    "Pillow>=9",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+
+[project.scripts]
+lightsim = "robot_simulator.main:main"
+
+[project.urls]
+Homepage = "https://github.com/keshavwxyz/lightweight-robotics-simulator"
+Issues = "https://github.com/keshavwxyz/lightweight-robotics-simulator/issues"
+
+[tool.setuptools.packages.find]
+include = ["robot_simulator*"]
+
+[tool.setuptools.package-data]
+robot_simulator = ["config.json", "examples/**/*"]

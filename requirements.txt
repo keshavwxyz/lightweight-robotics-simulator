@@ -1,0 +1,15 @@
+# Physics, rendering and user interface
+pybullet>=3.2.6
+numpy>=1.24,<2
+glfw>=2.6
+PyOpenGL>=3.1.7
+imgui[glfw]==2.0.0
+trimesh>=4.0
+Pillow>=9
+# COLLADA (.dae) meshes
+pycollada>=0.8
+# Tests
+pytest>=7
+pyflakes>=3
+# ROS 2 (rclpy, message packages, simulation_interfaces) comes from your
+# ROS 2 installation (for example /opt/ros/jazzy). Do not install it with pip.

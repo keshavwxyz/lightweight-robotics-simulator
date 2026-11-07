@@ -1,0 +1,429 @@
+{
+  "format": "robot_simulator_project",
+  "version": 1,
+  "name": "diff_drive_demo",
+  "physics": {
+    "frequency_hz": 240.0,
+    "gravity": [
+      0.0,
+      0.0,
+      -9.81
+    ],
+    "solver_iterations": 50,
+    "collision_detection": true,
+    "default_friction": 0.8,
+    "default_restitution": 0.0,
+    "contact_erp": 0.2,
+    "max_steps_per_frame": 64
+  },
+  "ros2": {
+    "enabled": true,
+    "node_name": "lightweight_sim",
+    "state_publish_rate_hz": 50.0,
+    "clock_publish_rate_hz": 100.0,
+    "publish_clock": true,
+    "cmd_vel_timeout_s": 0.5,
+    "cmd_vel_stamped": false,
+    "domain_id": null
+  },
+  "simulation": {
+    "speed": 1.0
+  },
+  "world": {
+    "objects": [
+      {
+        "name": "ground_plane",
+        "shape": "plane",
+        "size": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "radius": 0.5,
+        "length": 1.0,
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rpy": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mass": 0.0,
+        "color": [
+          0.35,
+          0.37,
+          0.4,
+          1.0
+        ],
+        "collision_enabled": true,
+        "visual_enabled": true,
+        "friction": null,
+        "restitution": null
+      },
+      {
+        "name": "wall_north",
+        "shape": "box",
+        "size": [
+          8,
+          0.1,
+          0.8
+        ],
+        "radius": 0.5,
+        "length": 1.0,
+        "position": [
+          0,
+          4,
+          0.4
+        ],
+        "rpy": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mass": 0.0,
+        "color": [
+          0.75,
+          0.75,
+          0.72,
+          1
+        ],
+        "collision_enabled": true,
+        "visual_enabled": true,
+        "friction": null,
+        "restitution": null
+      },
+      {
+        "name": "wall_south",
+        "shape": "box",
+        "size": [
+          8,
+          0.1,
+          0.8
+        ],
+        "radius": 0.5,
+        "length": 1.0,
+        "position": [
+          0,
+          -4,
+          0.4
+        ],
+        "rpy": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mass": 0.0,
+        "color": [
+          0.75,
+          0.75,
+          0.72,
+          1
+        ],
+        "collision_enabled": true,
+        "visual_enabled": true,
+        "friction": null,
+        "restitution": null
+      },
+      {
+        "name": "wall_east",
+        "shape": "box",
+        "size": [
+          0.1,
+          8,
+          0.8
+        ],
+        "radius": 0.5,
+        "length": 1.0,
+        "position": [
+          4,
+          0,
+          0.4
+        ],
+        "rpy": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mass": 0.0,
+        "color": [
+          0.75,
+          0.75,
+          0.72,
+          1
+        ],
+        "collision_enabled": true,
+        "visual_enabled": true,
+        "friction": null,
+        "restitution": null
+      },
+      {
+        "name": "wall_west",
+        "shape": "box",
+        "size": [
+          0.1,
+          8,
+          0.8
+        ],
+        "radius": 0.5,
+        "length": 1.0,
+        "position": [
+          -4,
+          0,
+          0.4
+        ],
+        "rpy": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mass": 0.0,
+        "color": [
+          0.75,
+          0.75,
+          0.72,
+          1
+        ],
+        "collision_enabled": true,
+        "visual_enabled": true,
+        "friction": null,
+        "restitution": null
+      },
+      {
+        "name": "crate",
+        "shape": "box",
+        "size": [
+          0.6,
+          0.6,
+          0.6
+        ],
+        "radius": 0.5,
+        "length": 1.0,
+        "position": [
+          1.8,
+          0.8,
+          0.3
+        ],
+        "rpy": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mass": 0.0,
+        "color": [
+          0.8,
+          0.55,
+          0.25,
+          1
+        ],
+        "collision_enabled": true,
+        "visual_enabled": true,
+        "friction": null,
+        "restitution": null
+      },
+      {
+        "name": "pillar",
+        "shape": "cylinder",
+        "size": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "radius": 0.25,
+        "length": 1.2,
+        "position": [
+          -1.5,
+          -1.5,
+          0.6
+        ],
+        "rpy": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mass": 0.0,
+        "color": [
+          0.3,
+          0.6,
+          0.8,
+          1
+        ],
+        "collision_enabled": true,
+        "visual_enabled": true,
+        "friction": null,
+        "restitution": null
+      },
+      {
+        "name": "ball",
+        "shape": "sphere",
+        "size": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "radius": 0.2,
+        "length": 1.0,
+        "position": [
+          1.0,
+          -2.0,
+          0.2
+        ],
+        "rpy": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mass": 0.5,
+        "color": [
+          0.7,
+          0.3,
+          0.35,
+          1
+        ],
+        "collision_enabled": true,
+        "visual_enabled": true,
+        "friction": null,
+        "restitution": null
+      }
+    ]
+  },
+  "robots": [
+    {
+      "name": "diff_bot",
+      "urdf_path": "diff_drive_robot.urdf",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rpy": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "fixed_base": false,
+      "self_collision": false,
+      "lateral_friction": null,
+      "link_friction": {
+        "front_caster": 0,
+        "rear_caster": 0
+      },
+      "tf_prefix": "",
+      "initial_joint_positions": {},
+      "motors": [
+        {
+          "joint": "left_wheel_joint",
+          "type": "rotational",
+          "mode": "velocity",
+          "max_effort": 5,
+          "max_velocity": 20,
+          "position_gain": 0.3,
+          "velocity_gain": 1.0,
+          "target_position": 0.0,
+          "target_velocity": 0.0,
+          "target_effort": 0.0
+        },
+        {
+          "joint": "right_wheel_joint",
+          "type": "rotational",
+          "mode": "velocity",
+          "max_effort": 5,
+          "max_velocity": 20,
+          "position_gain": 0.3,
+          "velocity_gain": 1.0,
+          "target_position": 0.0,
+          "target_velocity": 0.0,
+          "target_effort": 0.0
+        }
+      ],
+      "sensors": [
+        {
+          "name": "imu",
+          "type": "imu",
+          "link": "base_link",
+          "xyz": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rpy": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rate_hz": 100.0,
+          "enabled": true,
+          "topic": ""
+        },
+        {
+          "name": "lidar",
+          "type": "lidar_2d",
+          "link": "lidar_mount",
+          "xyz": [
+            0,
+            0,
+            0.03
+          ],
+          "rpy": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rate_hz": 10.0,
+          "enabled": true,
+          "topic": "",
+          "angular_resolution": 0.017453292519943295,
+          "range_min": 0.12,
+          "range_max": 12.0
+        },
+        {
+          "name": "camera",
+          "type": "camera",
+          "link": "camera_mount",
+          "xyz": [
+            0.02,
+            0,
+            0
+          ],
+          "rpy": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rate_hz": 15,
+          "enabled": true,
+          "topic": "",
+          "width": 640,
+          "height": 480,
+          "horizontal_fov": 1.3962634015954636,
+          "near": 0.05,
+          "far": 50.0
+        }
+      ],
+      "diff_drive": {
+        "enabled": true,
+        "left_joints": [
+          "left_wheel_joint"
+        ],
+        "right_joints": [
+          "right_wheel_joint"
+        ],
+        "wheel_radius": 0.08,
+        "wheel_separation": 0.36,
+        "invert_left": false,
+        "invert_right": false,
+        "max_linear_velocity": 1.0,
+        "max_angular_velocity": 3.0
+      },
+      "odometry": {
+        "enabled": true,
+        "odom_frame": "odom",
+        "base_frame": "base_footprint",
+        "publish_world_tf": false
+      }
+    }
+  ],
+  "package_paths": []
+}

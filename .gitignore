@@ -1,0 +1,23 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+
+# Simulator runtime files
+*.json.tmp
+robot_simulator/examples/*/assets/
+robot_simulator/examples/*/environments/
+robot_simulator/examples/*/logs/
+robot_simulator/examples/*/robots/
+
+# Editor and local files
+pyrightconfig.json
+.vscode/
+.idea/
+
+# Separate repository (example ROS 2 workspace on the developer computer)
+ros2_ws/

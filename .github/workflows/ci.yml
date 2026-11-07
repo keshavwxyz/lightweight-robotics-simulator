@@ -1,0 +1,25 @@
+# Runs the tests on each push and pull request. The runner has no ROS 2, thus
+# the ROS tests are skipped. Xvfb with Mesa gives the OpenGL context for the
+# camera and rendering tests.
+name: ci
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install system packages
+        run: sudo apt-get update && sudo apt-get install -y xvfb libgl1-mesa-dri libglx-mesa0 libegl1
+      - name: Install Python packages
+        run: pip install -r requirements.txt
+      - name: Lint
+        run: python -m pyflakes robot_simulator
+      - name: Tests
+        run: xvfb-run -a -s "-screen 0 1280x1024x24" python -m pytest robot_simulator/tests -q

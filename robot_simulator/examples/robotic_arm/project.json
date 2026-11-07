@@ -1,0 +1,242 @@
+{
+  "format": "robot_simulator_project",
+  "version": 1,
+  "name": "six_dof_arm_demo",
+  "physics": {
+    "frequency_hz": 240.0,
+    "gravity": [
+      0.0,
+      0.0,
+      -9.81
+    ],
+    "solver_iterations": 50,
+    "collision_detection": true,
+    "default_friction": 0.8,
+    "default_restitution": 0.0,
+    "contact_erp": 0.2,
+    "max_steps_per_frame": 64
+  },
+  "ros2": {
+    "enabled": true,
+    "node_name": "lightweight_sim",
+    "state_publish_rate_hz": 50.0,
+    "clock_publish_rate_hz": 100.0,
+    "publish_clock": true,
+    "cmd_vel_timeout_s": 0.5,
+    "cmd_vel_stamped": false,
+    "domain_id": null
+  },
+  "simulation": {
+    "speed": 1.0
+  },
+  "world": {
+    "objects": [
+      {
+        "name": "ground_plane",
+        "shape": "plane",
+        "size": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "radius": 0.5,
+        "length": 1.0,
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rpy": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mass": 0.0,
+        "color": [
+          0.35,
+          0.37,
+          0.4,
+          1.0
+        ],
+        "collision_enabled": true,
+        "visual_enabled": true,
+        "friction": null,
+        "restitution": null
+      },
+      {
+        "name": "table",
+        "shape": "box",
+        "size": [
+          0.6,
+          0.8,
+          0.3
+        ],
+        "radius": 0.5,
+        "length": 1.0,
+        "position": [
+          0.6,
+          0,
+          0.15
+        ],
+        "rpy": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mass": 0.0,
+        "color": [
+          0.55,
+          0.4,
+          0.3,
+          1
+        ],
+        "collision_enabled": true,
+        "visual_enabled": true,
+        "friction": null,
+        "restitution": null
+      }
+    ]
+  },
+  "robots": [
+    {
+      "name": "six_dof_arm",
+      "urdf_path": "six_dof_arm.urdf",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rpy": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "fixed_base": true,
+      "self_collision": false,
+      "lateral_friction": null,
+      "link_friction": {},
+      "tf_prefix": "",
+      "initial_joint_positions": {
+        "joint2": 0.5,
+        "joint3": 1.0
+      },
+      "motors": [
+        {
+          "joint": "joint1",
+          "type": "rotational",
+          "mode": "position",
+          "max_effort": 80,
+          "max_velocity": 2.0,
+          "position_gain": 0.3,
+          "velocity_gain": 1.0,
+          "target_position": 0.0,
+          "target_velocity": 0.0,
+          "target_effort": 0.0
+        },
+        {
+          "joint": "joint2",
+          "type": "rotational",
+          "mode": "position",
+          "max_effort": 80,
+          "max_velocity": 2.0,
+          "position_gain": 0.3,
+          "velocity_gain": 1.0,
+          "target_position": 0.5,
+          "target_velocity": 0.0,
+          "target_effort": 0.0
+        },
+        {
+          "joint": "joint3",
+          "type": "rotational",
+          "mode": "position",
+          "max_effort": 15,
+          "max_velocity": 2.0,
+          "position_gain": 0.3,
+          "velocity_gain": 1.0,
+          "target_position": 1.0,
+          "target_velocity": 0.0,
+          "target_effort": 0.0
+        },
+        {
+          "joint": "joint4",
+          "type": "rotational",
+          "mode": "position",
+          "max_effort": 15,
+          "max_velocity": 2.0,
+          "position_gain": 0.3,
+          "velocity_gain": 1.0,
+          "target_position": 0.0,
+          "target_velocity": 0.0,
+          "target_effort": 0.0
+        },
+        {
+          "joint": "joint5",
+          "type": "rotational",
+          "mode": "position",
+          "max_effort": 15,
+          "max_velocity": 2.0,
+          "position_gain": 0.3,
+          "velocity_gain": 1.0,
+          "target_position": 0.0,
+          "target_velocity": 0.0,
+          "target_effort": 0.0
+        },
+        {
+          "joint": "joint6",
+          "type": "rotational",
+          "mode": "position",
+          "max_effort": 15,
+          "max_velocity": 2.0,
+          "position_gain": 0.3,
+          "velocity_gain": 1.0,
+          "target_position": 0.0,
+          "target_velocity": 0.0,
+          "target_effort": 0.0
+        }
+      ],
+      "sensors": [
+        {
+          "name": "wrist_camera",
+          "type": "camera",
+          "link": "wrist_3_link",
+          "xyz": [
+            0,
+            0,
+            0.05
+          ],
+          "rpy": [
+            0,
+            -1.5707963267948966,
+            0
+          ],
+          "rate_hz": 10,
+          "enabled": true,
+          "topic": "",
+          "width": 640,
+          "height": 480,
+          "horizontal_fov": 1.3962634015954636,
+          "near": 0.05,
+          "far": 50.0
+        }
+      ],
+      "diff_drive": {
+        "enabled": false,
+        "left_joints": [],
+        "right_joints": [],
+        "wheel_radius": 0.05,
+        "wheel_separation": 0.3,
+        "invert_left": false,
+        "invert_right": false,
+        "max_linear_velocity": 1.0,
+        "max_angular_velocity": 3.0
+      },
+      "odometry": {
+        "enabled": false,
+        "odom_frame": "odom",
+        "base_frame": "",
+        "publish_world_tf": false
+      }
+    }
+  ],
+  "package_paths": []
+}
